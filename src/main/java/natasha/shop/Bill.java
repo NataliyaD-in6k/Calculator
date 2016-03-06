@@ -12,11 +12,11 @@ public class Bill {
         this.shoppingCart = shoppingCart;
     }
 
-    public void addMessageToTop(String message){
+    public void addMessageToTop(String message) {
         topMessages.add(message);
     }
 
-    public void addMessageToBottom(String message){
+    public void addMessageToBottom(String message) {
         bottomMessages.add(message);
     }
 

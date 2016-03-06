@@ -26,6 +26,15 @@ public class ShoppingCart {
         return count;
     }
 
+    public double getTotalCost() {
+        double totalCost = 0;
+        for (ProductInCart productInCart : getAllProductsInCart()) {
+            totalCost += productInCart.getDiscountedPrice();
+        }
+        return totalCost;
+    }
+
+
     public List<ProductInCart> getProductsInCartByProduct(Product product){
         List<ProductInCart> productInCartList = new ArrayList<ProductInCart>();
         for (ProductInCart p : productsInCart) {
