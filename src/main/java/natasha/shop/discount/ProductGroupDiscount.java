@@ -10,18 +10,23 @@ import java.util.List;
 import java.util.Map;
 
 public class ProductGroupDiscount implements Discount {
+    private String name;
     private Map<Product, Integer> productGroup = new HashMap<Product, Integer>();
     private int percent;
 
-    public ProductGroupDiscount(Map<Product, Integer> productGroup, int percent) {
+    public ProductGroupDiscount(String name, Map<Product, Integer> productGroup, int percent) {
+        this.name = name;
         this.productGroup = productGroup;
         this.percent = percent;
     }
 
     public String applyDiscount(ShoppingCart shoppingCart) {
         int countOfGroups = countOfGroups(shoppingCart);
+        if(countOfGroups == 0){
+            return null;
+        }
         applyDiscountToGroups(shoppingCart, countOfGroups);
-        return null;
+        return name+" is applied! Discount "+percent+"%";
     }
 
     private void applyDiscountToGroups(ShoppingCart shoppingCart, int countOfGroups) {

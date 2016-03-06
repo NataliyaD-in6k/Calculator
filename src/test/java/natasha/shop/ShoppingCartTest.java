@@ -21,7 +21,8 @@ public class ShoppingCartTest {
 
     @Test
     public void addProduct_whenAddProduct_getCountOfProductShouldReturnOne(){
-        shoppingCart.addProduct(new Product("banan", 1));
+
+        shoppingCart.addProduct(new Product());
 
         assertThat(shoppingCart.getCountOfProducts(), equalTo(1));
     }

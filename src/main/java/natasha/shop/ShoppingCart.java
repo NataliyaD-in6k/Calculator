@@ -9,6 +9,9 @@ public class ShoppingCart {
     public void addProduct(Product product) {
         productsInCart.add(new ProductInCart(product));
     }
+    public void addProduct(ProductInCart product) {
+        productsInCart.add(product);
+    }
 
     public void addProducts(List<Product> productList) {
         for (Product product : productList) {

@@ -13,11 +13,15 @@ public class Bill {
     }
 
     public void addMessageToTop(String message) {
-        topMessages.add(message);
+        if (message != null) {
+            topMessages.add(message);
+        }
     }
 
     public void addMessageToBottom(String message) {
-        bottomMessages.add(message);
+        if (message != null) {
+            bottomMessages.add(message);
+        }
     }
 
     public ShoppingCart getShoppingCart() {

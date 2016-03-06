@@ -14,8 +14,10 @@ public class Cashbox {
 
     public void processBill(Bill bill){
         for(Discount d: discounts){
-            d.applyDiscount(bill.getShoppingCart());
+            String message = d.applyDiscount(bill.getShoppingCart());
+            bill.addMessageToBottom(message);
         }
+
     }
 
 }
