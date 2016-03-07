@@ -2,9 +2,7 @@ package natasha.shop;
 
 import natasha.shop.discount.GiftDiscount;
 import natasha.shop.discount.ProductGroupDiscount;
-import natasha.shop.discount.TotalCostDiscount;
 import natasha.shop.discount.deprecated.PersistentDiscount;
-import natasha.shop.discount.deprecated.ProductDiscount;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -25,7 +23,7 @@ public class Launch {
                 new Product(categories.get(0), "apple", new BigDecimal(3)),
                 new Product(categories.get(0), "tomato", new BigDecimal(9)),
                 new Product(categories.get(1), "vacuum", new BigDecimal(500)),
-                new Product(categories.get(1), "fen", new BigDecimal(100)),
+                new Product(categories.get(1), "dryer", new BigDecimal(100)),
                 new Product(categories.get(2), "plate", new BigDecimal(50)));
         shoppingCart.addProduct(allProductsInShop.get(0));
         shoppingCart.addProduct(allProductsInShop.get(0));
@@ -38,29 +36,23 @@ public class Launch {
         shoppingCart.addProduct(allProductsInShop.get(1));
         shoppingCart.addProduct(allProductsInShop.get(5));
 
-
-
         Bill bill = new Bill(shoppingCart);
+        printBill(categories, allProductsInShop, bill);
+    }
+
+    private static void printBill(List<Category> categories, List<Product> allProductsInShop, Bill bill) {
         Cashbox cashbox = new Cashbox();
         cashbox.addDiscount(new PersistentDiscount("Persistent discount", 10));
+
         Map<Product, Integer> productGroup = new HashMap<Product, Integer>();
         productGroup.put(allProductsInShop.get(0), 1);
         productGroup.put(allProductsInShop.get(1), 2);
-        cashbox.addDiscount(new ProductGroupDiscount("Orange-potato group", productGroup, 20));
+        cashbox.addDiscount(new ProductGroupDiscount("Orange-potato group", productGroup, 1));
 
         cashbox.addDiscount(new GiftDiscount(categories.get(1), allProductsInShop.get(6)));
         cashbox.processBill(bill);
-        List<ProductInCart> allProductsInCart = bill.getShoppingCart().getAllProductsInCart();
-        for (ProductInCart productInCart: allProductsInCart){
-            System.out.print(productInCart.getProduct().getName()+"..........");
-            System.out.print(productInCart.getProduct().getPrice()+"/");
-            System.out.println(productInCart.getDiscountedPrice());
-        }
-        List<String> bottomMessages = bill.getBottomMessages();
-        for(String message:bottomMessages) {
-            System.out.println(message);
-        }
 
-
+        BillPrinter billPrinter = new BillPrinter(bill);
+        billPrinter.printBill();
     }
 }

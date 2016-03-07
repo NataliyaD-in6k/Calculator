@@ -12,6 +12,7 @@ public class ShoppingCart {
     public void addProduct(Product product) {
         productsInCart.add(new ProductInCart(product));
     }
+
     public void addProduct(ProductInCart product) {
         productsInCart.add(product);
     }
@@ -35,13 +36,13 @@ public class ShoppingCart {
     public BigDecimal getTotalCost() {
         BigDecimal totalCost = new BigDecimal(0);
         for (ProductInCart productInCart : getAllProductsInCart()) {
-            totalCost.add(productInCart.getDiscountedPrice());
+            totalCost = totalCost.add(productInCart.getDiscountedPrice());
         }
         return totalCost;
     }
 
 
-    public List<ProductInCart> getProductsInCartByProduct(Product product){
+    public List<ProductInCart> getProductsInCartByProduct(Product product) {
         List<ProductInCart> productInCartList = new ArrayList<ProductInCart>();
         for (ProductInCart p : productsInCart) {
             if (p.getProduct() == product) {
@@ -51,11 +52,11 @@ public class ShoppingCart {
         return productInCartList;
     }
 
-    public int getCountOfProducts(){
+    public int getCountOfProducts() {
         return productsInCart.size();
     }
 
-    public List<ProductInCart> getAllProductsInCart(){
+    public List<ProductInCart> getAllProductsInCart() {
         return productsInCart;
     }
 }

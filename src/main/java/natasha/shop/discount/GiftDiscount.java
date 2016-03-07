@@ -24,7 +24,7 @@ public class GiftDiscount implements Discount{
                 ProductInCart giftWrapper = new ProductInCart(gift);
                 giftWrapper.setDiscountedPrice(new BigDecimal(0));
                 shoppingCart.addProduct(giftWrapper);
-                return "You got a "+gift.getName()+" as gift!";
+                return "You got a "+gift.getName()+" as a gift!";
             }
         }
         return null;

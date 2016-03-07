@@ -14,15 +14,15 @@ import static org.junit.Assert.*;
 
 public class ProductGroupDiscountTest {
     private ProductGroupDiscount productGroupDiscount;
-    private Product product;
     private ShoppingCart shoppingCart;
 
     @Before
     public void before(){
         HashMap<Product, Integer> productGroup = new HashMap<Product, Integer>();
-        product = new Product(null, "a", new BigDecimal(10));
+        Category category = new Category("food");
+        Product product = new Product(category, "apple", new BigDecimal(10));
         productGroup.put(product, 2);
-        productGroupDiscount = new ProductGroupDiscount("TestDiscount", productGroup, 1);
+        productGroupDiscount = new ProductGroupDiscount("Apple set discount", productGroup, 1);
         shoppingCart = new ShoppingCart();
         shoppingCart.addProduct(product);
         shoppingCart.addProduct(product);
@@ -42,6 +42,6 @@ public class ProductGroupDiscountTest {
     public void applyDiscount_shouldReturnMessage(){
         String message = productGroupDiscount.applyDiscount(shoppingCart);
 
-        assertThat(message, equalTo("TestDiscount is applied! Discount 1$"));
+        assertThat(message, equalTo("Apple set discount is applied! Discount 1$"));
     }
 }

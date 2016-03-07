@@ -2,7 +2,6 @@ package natasha.shop.discount;
 
 import natasha.shop.ProductInCart;
 import natasha.shop.ShoppingCart;
-
 import java.math.BigDecimal;
 
 public class TotalCostDiscount implements Discount{
@@ -17,7 +16,7 @@ public class TotalCostDiscount implements Discount{
     }
 
     public String applyDiscount(ShoppingCart shoppingCart) {
-        if (shoppingCart.getTotalCost().compareTo(totalCostCondition) == 1){
+        if (shoppingCart.getTotalCost().compareTo(totalCostCondition) == -1){
             return null;
         }
         for (ProductInCart p : shoppingCart.getAllProductsInCart()) {
