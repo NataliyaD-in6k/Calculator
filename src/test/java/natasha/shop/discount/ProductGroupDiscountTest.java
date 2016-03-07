@@ -21,16 +21,15 @@ public class ProductGroupDiscountTest {
         HashMap<Product, Integer> productGroup = new HashMap<Product, Integer>();
         product = new Product(null, "a", 10);
         productGroup.put(product, 2);
-        productGroupDiscount = new ProductGroupDiscount("TestDiscount", productGroup, 10);
+        productGroupDiscount = new ProductGroupDiscount("TestDiscount", productGroup, 1);
         shoppingCart = new ShoppingCart();
+        shoppingCart.addProduct(product);
+        shoppingCart.addProduct(product);
+        shoppingCart.addProduct(product);
     }
 
     @Test
     public void applyDiscount_shouldSetDiscountedPriceOnGroupOfProduct(){
-        shoppingCart.addProduct(product);
-        shoppingCart.addProduct(product);
-        shoppingCart.addProduct(product);
-
         productGroupDiscount.applyDiscount(shoppingCart);
 
         assertThat(shoppingCart.getAllProductsInCart().get(0).getDiscountedPrice(), equalTo(9d));
@@ -42,6 +41,6 @@ public class ProductGroupDiscountTest {
     public void applyDiscount_shouldReturnMessage(){
         String message = productGroupDiscount.applyDiscount(shoppingCart);
 
-        assertThat(message, equalTo("TestDiscount is applied! Discount 10%"));
+        assertThat(message, equalTo("TestDiscount is applied! Discount 1$"));
     }
 }

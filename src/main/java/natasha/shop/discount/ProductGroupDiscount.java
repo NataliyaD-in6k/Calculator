@@ -12,12 +12,12 @@ import java.util.Map;
 public class ProductGroupDiscount implements Discount {
     private String name;
     private Map<Product, Integer> productGroup = new HashMap<Product, Integer>();
-    private int percent;
+    private int amount;
 
-    public ProductGroupDiscount(String name, Map<Product, Integer> productGroup, int percent) {
+    public ProductGroupDiscount(String name, Map<Product, Integer> productGroup, int amount) {
         this.name = name;
         this.productGroup = productGroup;
-        this.percent = percent;
+        this.amount = amount;
     }
 
     public String applyDiscount(ShoppingCart shoppingCart) {
@@ -26,7 +26,7 @@ public class ProductGroupDiscount implements Discount {
             return null;
         }
         applyDiscountToGroups(shoppingCart, countOfGroups);
-        return name+" is applied! Discount "+percent+"%";
+        return name+" is applied! Discount "+amount+"$";
     }
 
     private void applyDiscountToGroups(ShoppingCart shoppingCart, int countOfGroups) {
@@ -34,7 +34,7 @@ public class ProductGroupDiscount implements Discount {
             List<ProductInCart> productsToDiscount = shoppingCart.getProductsInCartByProduct(product);
             productsToDiscount = productsToDiscount.subList(0, countOfGroups * productGroup.get(product));
             for (ProductInCart productInCart : productsToDiscount) {
-                productInCart.setDiscountedPrice(productInCart.getDiscountedPrice() / 100 * (100 - percent));
+                productInCart.setDiscountedPrice(productInCart.getDiscountedPrice() - amount);
             }
         }
     }
