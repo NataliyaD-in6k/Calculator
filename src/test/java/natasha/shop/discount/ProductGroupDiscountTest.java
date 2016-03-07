@@ -6,6 +6,7 @@ import natasha.shop.ShoppingCart;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 
 import static org.hamcrest.Matchers.*;
@@ -19,7 +20,7 @@ public class ProductGroupDiscountTest {
     @Before
     public void before(){
         HashMap<Product, Integer> productGroup = new HashMap<Product, Integer>();
-        product = new Product(null, "a", 10);
+        product = new Product(null, "a", new BigDecimal(10));
         productGroup.put(product, 2);
         productGroupDiscount = new ProductGroupDiscount("TestDiscount", productGroup, 1);
         shoppingCart = new ShoppingCart();
@@ -32,9 +33,9 @@ public class ProductGroupDiscountTest {
     public void applyDiscount_shouldSetDiscountedPriceOnGroupOfProduct(){
         productGroupDiscount.applyDiscount(shoppingCart);
 
-        assertThat(shoppingCart.getAllProductsInCart().get(0).getDiscountedPrice(), equalTo(9d));
-        assertThat(shoppingCart.getAllProductsInCart().get(1).getDiscountedPrice(), equalTo(9d));
-        assertThat(shoppingCart.getAllProductsInCart().get(2).getDiscountedPrice(), equalTo(10d));
+        assertThat(shoppingCart.getAllProductsInCart().get(0).getDiscountedPrice(), equalTo(new BigDecimal(9)));
+        assertThat(shoppingCart.getAllProductsInCart().get(1).getDiscountedPrice(), equalTo(new BigDecimal(9)));
+        assertThat(shoppingCart.getAllProductsInCart().get(2).getDiscountedPrice(), equalTo(new BigDecimal(10)));
     }
 
     @Test

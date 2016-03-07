@@ -1,5 +1,8 @@
 package natasha.shop;
 
+import sun.nio.cs.ext.Big5;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,10 +32,10 @@ public class ShoppingCart {
         return count;
     }
 
-    public double getTotalCost() {
-        double totalCost = 0;
+    public BigDecimal getTotalCost() {
+        BigDecimal totalCost = new BigDecimal(0);
         for (ProductInCart productInCart : getAllProductsInCart()) {
-            totalCost += productInCart.getDiscountedPrice();
+            totalCost.add(productInCart.getDiscountedPrice());
         }
         return totalCost;
     }

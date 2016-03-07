@@ -3,25 +3,24 @@ package natasha.shop.discount;
 import natasha.shop.Category;
 import natasha.shop.Product;
 import natasha.shop.ShoppingCart;
-import natasha.shop.discount.deprecated.PersistentDiscount;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.closeTo;
+import static org.junit.Assert.assertThat;
 
-public class PersistentDiscountTest {
+public class TotalCostDiscountTest {
 
     public static final BigDecimal DELTA = new BigDecimal(0.001);
 
     @Test
     public void applyDiscount_shouldDiscountPriceOnEachProduct(){
-        PersistentDiscount persistentDiscount = new PersistentDiscount("Persistent discount", 10);
+        Discount persistentDiscount = new TotalCostDiscount("Persistent discount", 10, new BigDecimal(50));
         ShoppingCart shoppingCart = new ShoppingCart();
         Category food = new Category("food");
         shoppingCart.addProduct(new Product(food, "apple", new BigDecimal(30)));
-        shoppingCart.addProduct(new Product(food, "test", new BigDecimal(50)));
+        shoppingCart.addProduct(new Product(food, "app", new BigDecimal(50)));
 
         persistentDiscount.applyDiscount(shoppingCart);
 

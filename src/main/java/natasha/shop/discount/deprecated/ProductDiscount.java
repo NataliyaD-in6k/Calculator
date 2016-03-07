@@ -5,6 +5,7 @@ import natasha.shop.ProductInCart;
 import natasha.shop.ShoppingCart;
 import natasha.shop.discount.Discount;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class ProductDiscount implements Discount {
@@ -29,7 +30,9 @@ public class ProductDiscount implements Discount {
         for (ProductInCart productInCart : allProductsInCart) {
             Product currentProduct = productInCart.getProduct();
             if(currentProduct == product){
-                productInCart.setDiscountedPrice(productInCart.getDiscountedPrice()/100*(100-percent));
+                BigDecimal discountedPrice = productInCart.getDiscountedPrice().divide(new BigDecimal(100 * (100 - percent)));
+                productInCart.setDiscountedPrice(discountedPrice);
+
             }
         }
         return "Applied discount for "+product.getName();

@@ -5,6 +5,7 @@ import natasha.shop.Product;
 import natasha.shop.ProductInCart;
 import natasha.shop.ShoppingCart;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class GiftDiscount implements Discount{
@@ -21,7 +22,7 @@ public class GiftDiscount implements Discount{
         for(ProductInCart p: allProductsInCart){
             if (p.getProduct().getCategory() == category){
                 ProductInCart giftWrapper = new ProductInCart(gift);
-                giftWrapper.setDiscountedPrice(0);
+                giftWrapper.setDiscountedPrice(new BigDecimal(0));
                 shoppingCart.addProduct(giftWrapper);
                 return "You got a "+gift.getName()+" as gift!";
             }

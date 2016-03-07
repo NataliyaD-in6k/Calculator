@@ -6,6 +6,7 @@ import natasha.shop.discount.TotalCostDiscount;
 import natasha.shop.discount.deprecated.PersistentDiscount;
 import natasha.shop.discount.deprecated.ProductDiscount;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 public class Launch {
@@ -18,14 +19,14 @@ public class Launch {
                                                 new Category("Tech"),
                                                 new Category("Home products"));
 
-        List<Product> allProductsInShop = Arrays.asList(new Product(categories.get(0), "orange", 15),
-                new Product(categories.get(0), "potato", 8),
-                new Product(categories.get(0), "cucumber", 10),
-                new Product(categories.get(0), "apple", 3),
-                new Product(categories.get(0), "tomato", 9),
-                new Product(categories.get(1), "vacuum", 500),
-                new Product(categories.get(1), "fen", 100),
-                new Product(categories.get(2), "plate", 50));
+        List<Product> allProductsInShop = Arrays.asList(new Product(categories.get(0), "orange", new BigDecimal(15)),
+                new Product(categories.get(0), "potato", new BigDecimal(8)),
+                new Product(categories.get(0), "cucumber", new BigDecimal(10)),
+                new Product(categories.get(0), "apple", new BigDecimal(3)),
+                new Product(categories.get(0), "tomato", new BigDecimal(9)),
+                new Product(categories.get(1), "vacuum", new BigDecimal(500)),
+                new Product(categories.get(1), "fen", new BigDecimal(100)),
+                new Product(categories.get(2), "plate", new BigDecimal(50)));
         shoppingCart.addProduct(allProductsInShop.get(0));
         shoppingCart.addProduct(allProductsInShop.get(0));
         shoppingCart.addProduct(allProductsInShop.get(0));

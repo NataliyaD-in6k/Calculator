@@ -1,8 +1,10 @@
 package natasha.shop;
 
+import java.math.BigDecimal;
+
 public class ProductInCart {
     private Product product;
-    private double discountedPrice;
+    private BigDecimal discountedPrice;
 
     public ProductInCart(Product product) {
         this.product = product;
@@ -17,11 +19,11 @@ public class ProductInCart {
         this.product = product;
     }
 
-    public double getDiscountedPrice() {
+    public BigDecimal getDiscountedPrice() {
         return discountedPrice;
     }
 
-    public void setDiscountedPrice(double discountedPrice) {
+    public void setDiscountedPrice(BigDecimal discountedPrice) {
         this.discountedPrice = discountedPrice;
     }
 }

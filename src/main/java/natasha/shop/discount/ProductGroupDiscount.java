@@ -4,6 +4,7 @@ import natasha.shop.Product;
 import natasha.shop.ProductInCart;
 import natasha.shop.ShoppingCart;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,7 +35,7 @@ public class ProductGroupDiscount implements Discount {
             List<ProductInCart> productsToDiscount = shoppingCart.getProductsInCartByProduct(product);
             productsToDiscount = productsToDiscount.subList(0, countOfGroups * productGroup.get(product));
             for (ProductInCart productInCart : productsToDiscount) {
-                productInCart.setDiscountedPrice(productInCart.getDiscountedPrice() - amount);
+                productInCart.setDiscountedPrice(productInCart.getDiscountedPrice().add(new BigDecimal(amount).negate()));
             }
         }
     }
