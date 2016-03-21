@@ -20,6 +20,8 @@ public class GiftDiscount implements Discount{
     public String applyDiscount(ShoppingCart shoppingCart) {
         List<ProductInCart> allProductsInCart = shoppingCart.getAllProductsInCart();
         for(ProductInCart p: allProductsInCart){
+//          такое сравнение будет работать только в случае если это один и тот же объект категории,
+//            что не всегда может быть так.
             if (p.getProduct().getCategory() == category){
                 ProductInCart giftWrapper = new ProductInCart(gift);
                 giftWrapper.setDiscountedPrice(new BigDecimal(0));

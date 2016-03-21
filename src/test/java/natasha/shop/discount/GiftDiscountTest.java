@@ -29,6 +29,7 @@ public class GiftDiscountTest {
 
     @Test
     public void applyDiscount_shouldAddTheGiftToShoppingCart(){
+//        тут следовало использовать фейковый shoppingCart
         discount.applyDiscount(shoppingCart);
 
         assertThat(shoppingCart.getCountOfProduct(gift), equalTo(1));
