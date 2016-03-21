@@ -10,11 +10,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+// Принцып применения этой скидки абсолютно не понятен.
+// Ни тесты ни сам код не предоставляеют возможности быстро разобраться в
+// в логике этого класса.
 public class ProductGroupDiscount implements Discount {
     private String name;
     private Map<Product, Integer> productGroup = new HashMap<Product, Integer>();
     private int amount;
 
+//    класс не должен выставлять наружу способ хранения инофмации в нем.
+//    в данном случае не очивидно как должна использоваться это карта и как ее правильно сформировать.
     public ProductGroupDiscount(String name, Map<Product, Integer> productGroup, int amount) {
         this.name = name;
         this.productGroup = productGroup;

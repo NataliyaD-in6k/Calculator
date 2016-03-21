@@ -18,6 +18,7 @@ public class TotalCostDiscountTest {
     public void applyDiscount_shouldDiscountPriceOnEachProduct(){
         Discount persistentDiscount = new TotalCostDiscount("Persistent discount", 10, new BigDecimal(50));
         ShoppingCart shoppingCart = new ShoppingCart();
+//        так следовало назыть переменную для этой категории и в других тестах.
         Category food = new Category("food");
         shoppingCart.addProduct(new Product(food, "apple", new BigDecimal(30)));
         shoppingCart.addProduct(new Product(food, "app", new BigDecimal(50)));

@@ -17,6 +17,7 @@ public class CashboxTest {
         shoppingCart.addProduct(new Product(null, "item", new BigDecimal(200)));
         Bill bill = new Bill(shoppingCart);
         Cashbox cashbox = new Cashbox();
+//        использование реальной скидки нарушает независемость этого теста
         cashbox.addDiscount(new TotalCostDiscount("Discount from 100$", 10, new BigDecimal(100)));
 
         cashbox.processBill(bill);

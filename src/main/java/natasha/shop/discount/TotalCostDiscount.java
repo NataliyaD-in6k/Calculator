@@ -9,6 +9,7 @@ public class TotalCostDiscount implements Discount{
     private int percentOfDiscount;
     private BigDecimal totalCostCondition;
 
+//    totalCostCondition - название не в полной мере отражает суть этого поля
     public TotalCostDiscount(String name, int percentOfDiscount, BigDecimal totalCostCondition) {
         this.name = name;
         this.percentOfDiscount = percentOfDiscount;
@@ -20,6 +21,7 @@ public class TotalCostDiscount implements Discount{
             return null;
         }
         for (ProductInCart p : shoppingCart.getAllProductsInCart()) {
+//            дублирование кода с другими скидками
             BigDecimal price = p.getDiscountedPrice();
             BigDecimal discount = price.divide(new BigDecimal(100)).multiply(new BigDecimal(percentOfDiscount));
             p.setDiscountedPrice(price.add(discount.negate()));
